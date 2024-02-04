@@ -1,0 +1,3 @@
+python train_RA_MMIR.py --config_path configs/coco_config.yaml
+
+python demo_RA_MMIR.py

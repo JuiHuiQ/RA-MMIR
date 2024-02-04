@@ -1,0 +1,20 @@
+run:
+    python mnist_train.py --model unbounded_stn --angle 90 --grid_size 16
+    python mnist_visualize.py --model unbounded_stn --angle 90 --grid_size 4
+    python mnist_make_gif.py --model unbounded_stn --angle 90 --grid_size 4
+
+可以尝试模型架构 mnist 随机旋转角度和 TPS 网格大小的其他组合.详情如下:
+    共有三个可控参数：--model, --angle, --grid_size
+    --model：str，必填
+
+    对于no_stn，STN 模块被丢弃，只剩下一个 CNN 分类器。
+    使用bounded_stn，定位网络的输出被压缩到 [-1, 1], 就像在[2]F.tanh中所做的那样, unbounded_stn定位网络的输出没有被压缩
+
+    --angle: 整数，默认值 = 60
+
+    MNIST 数据集中的样本将按随机角度旋转[-angle, angle]
+    --grid_size: 整数，默认值 = 4
+
+    使用(grid_size x grid_size)控制点定义薄板样条变换
+
+    结果angle = 90通常很糟糕, 结果bounded_stn不好如果grid_size <= 3,
